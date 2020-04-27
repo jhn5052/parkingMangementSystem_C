@@ -2,7 +2,7 @@
 
 int main(void) {
     int num;
-    int parkinglot[10][20];
+    int parkinglot[10][20] = { 0, };
     mlist mlist;
     clist clist;
     car_init(&clist);
@@ -19,11 +19,11 @@ int main(void) {
 
         case 2:
             //주차하기
-            Enter(&clist,parkinglot); break;
+            Enter(&clist, parkinglot); break;
 
         case 3:
             //출차하기
-            Exit(&clist);   break;
+            Car_Exit(&clist, &mlist, parkinglot);   break;
 
         case 4:
             //주차 현황보기

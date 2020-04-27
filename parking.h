@@ -1,18 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+//#include <windows.h>
+#include<time.h>
 
-
-typedef struct tm {
-    int tm_sec;         /* 초,  range 0 to 59            */
-    int tm_min;         /* 분, range 0 to 59             */
-    int tm_hour;        /* 시간, range 0 to 23            */
-    int tm_mday;        /* 일, range 1 to 31             */
-    int tm_mon;         /* 월, range 0 to 11             */
-    int tm_year;        /* 1900년 부터의 년                */
-    int tm_wday;        /* 요일, range 일(0) to 토(6)      */
-    int tm_yday;        /* 1년 중 경과 일, range 0 to 365  */
-    int tm_isdst;       /* 써머타임                        */
-}tm;
 
 
 //차 정보 구조체
@@ -48,16 +38,17 @@ void Select(mlist* mem_list);
 int Signup(mlist* mem_list);
 void Delete_customer(mlist* mem_list);
 
-void Enter(clist* car_list, int parkinglot[][20]);
-void Exit(clist* car_list);
-int Calc(mlist * mlist, Car * car);
-int general_calc(Car *car);
+void Enter(clist* car_list, int(*parkinglot)[20]);
+void Car_Exit(clist* car_list, mlist* mem_list, int(*parkinglot)[20]);
+int Calc(mlist* mlist, Car* car);
+int general_calc(Car* car);
 
 int disp_menu();
-void disp_parkinglot(int parkinglot[][20]);
+void disp_parkinglot(int(*parkinglot)[20]);
 
 void Find_Car(clist* car_lsit);
-
+void disp_Car(clist* car_list);
+void disp_Mem(mlist* mem_list);
 
 Car* findCarNode(clist* car_list, int car_no);
 Car* findPrevCarNode(clist* car_list, int car_no);

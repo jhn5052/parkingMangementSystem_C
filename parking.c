@@ -258,8 +258,6 @@ void Car_Exit(clist* car_list, mlist* mem_list, int parkinglot[][20]) {
         ans *= 0.1;
     }
     printf("요금은 %d입니다.\n\n", ans);
-    //Sleep(2000); //출차 시 걸리는 시간 2초
-
 
     parkinglot[cur->sec_y][cur->sec_x] = 0;
     if (prev == cur)

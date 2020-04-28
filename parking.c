@@ -59,7 +59,7 @@ void Select(mlist* mem_list) {
 
 Car* findCarNode(clist* car_list, int car_no) {
     Car* tmp = car_list->head;
-    while (tmp) {
+    while (tmp!=NULL) {
         if (tmp->car_no == car_no) {
             return tmp;
         }
@@ -106,7 +106,7 @@ int Signup(mlist* mem_list) {
 
     printf("\n==========회원 등록==========\n");
     printf(">> 이름을 입력하세요 : ");
-    scanf(" %s", &str);
+    scanf(" %s", str);
     printf(">> 차량 번호를 입력하세요 : ");
     scanf(" %d", &car_num);
 
@@ -139,8 +139,9 @@ int Signup(mlist* mem_list) {
 }
 
 void disp_parkinglot(int parkinglot[][20]) {
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 20; ++j)
+	int i,j;
+    for (i = 0; i < 10; ++i) {
+        for (j = 0; j < 20; ++j)
             if (parkinglot[i][j])
                 printf("■ ");
             else
@@ -180,7 +181,6 @@ void Delete_customer(mlist* mem_list) {
     else if (ans == 'N')
         printf("취소를 선택하셨습니다.");
 
-    return 0;
 }
 
 void Enter(clist* car_list, int parkinglot[][20]) {
@@ -201,7 +201,7 @@ void Enter(clist* car_list, int parkinglot[][20]) {
     if ((new_element = (Car*)malloc(sizeof(Car))) == NULL)
         return;
 
-    if (findCarNode(&car_list, car_num)) {
+    if (findCarNode(car_list, car_num)) {
         printf("이미 주차된 차 번호입니다.");
         return;
     }
@@ -223,15 +223,11 @@ void Enter(clist* car_list, int parkinglot[][20]) {
     new_element->sec_y = y;
     new_element->date = tm;
     parkinglot[y][x] = 1;
-    if (!car_list->size) {
-        car_list->head = new_element;
-        car_list->size++;
-    }
-    else {
-        new_element->next = car_list->head;
-        car_list->head = new_element;
-        car_list->size++;
-    }
+   
+    new_element->next = car_list->head;
+    car_list->head = new_element;
+    car_list->size++;
+    
     return;
 }
 
@@ -269,7 +265,6 @@ void Car_Exit(clist* car_list, mlist* mem_list, int parkinglot[][20]) {
 
     printf("출차되었습니다.");
 
-    return 0;
 }
 
 
@@ -323,7 +318,7 @@ void disp_Car(clist* car_list) {
 }
 
 void disp_Mem(mlist* mem_list) {
-    Car* tmp = mem_list->head;
+    Mem* tmp = mem_list->head;
     while (tmp) {
         printf("%d\n", tmp->car_no);
         tmp = tmp->next;

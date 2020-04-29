@@ -5,11 +5,12 @@ int main(void) {
     int parkinglot[10][20] = { 0, };
     mlist mlist;
     clist clist;
-    car_init(&clist);
+    car_init(&clist, parkinglot);
     mem_init(&mlist);
 
     while (1) {
         num = disp_menu();
+        fflush(stdin);
         if (num == 0) break;
         switch (num) {
         case 1:
